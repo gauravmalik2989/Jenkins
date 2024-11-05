@@ -9,11 +9,13 @@
     yum:
       name: "{{ app }}"
       state: present
+      become: true
     tags: i-nginx
 
   - name: Starting the nginx service
     service:
       name: "{{ app }}"
+      become: true
       state: started
       enabled: true
     tags: ss-nginx
