@@ -1,0 +1,32 @@
+---
+- name: Install and Start the service and upload new code and restart the service
+  hosts: all
+  vars:
+    - app: httpd
+
+  tasks:
+  - name: Installing nginx
+    yum:
+      name: httpd 
+      state: present
+    become: true
+    
+
+  - name: Starting the nginx service
+    service:
+      name: httpd
+      state: started
+      enabled: true
+    become: true
+  
+  - name: Place custom HTML file
+    copy:
+      src: /var/lib/jenkins/workspace/websiteupdate/index.html
+      dest: /var/www/html/index.html
+    become: true
+  
+  - name: restart the service
+    service: 
+      name: httpd
+      state: restarted
+    become: true
