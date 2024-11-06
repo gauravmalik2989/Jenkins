@@ -1,6 +1,6 @@
 ---
 - name: Install and Start the service and upload new code and restart the service
-  hosts: local
+  hosts: all
   vars:
     - app: httpd
 
